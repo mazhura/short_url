@@ -5076,8 +5076,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      inputUrl: '',
+      outputUrl: '',
+      isInputEmpty: true
+    };
+  },
+  methods: {
+    generateLink: function generateLink() {
+      var _this = this;
+      if (this.isInputEmpty) {
+        return setTimeout(this.focusInput, 50);
+      }
+      axios.put('', {
+        inputUrl: this.inputUrl
+      }).then(function (response) {
+        console.log(response);
+        _this.outputUrl = '12';
+        _this.isInputEmpty = true;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    focusInput: function focusInput() {
+      this.$refs.inputUrl.focus();
+    }
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  watch: {
+    inputUrl: function inputUrl(newVal) {
+      this.isInputEmpty = newVal.length === 0;
+      this.outputUrl = '';
+    }
   }
 });
 
@@ -5098,25 +5131,62 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("div", {
-    staticClass: "container"
+    staticClass: "d-flex-center flex-column"
   }, [_c("div", {
-    staticClass: "row justify-content-center"
-  }, [_c("div", {
-    staticClass: "col-md-8"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("\n                    I'm an example component.\n                ")])])])])]);
-}];
+    staticClass: "col-md-6 mx-auto"
+  }, [_c("button", {
+    staticClass: "btn btn-generate-size d-block mx-auto",
+    "class": _vm.isInputEmpty ? "btn-outline-warning" : "btn-warning",
+    on: {
+      click: _vm.generateLink
+    }
+  }, [_vm._v("\n            Generate link\n        ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.inputUrl,
+      expression: "inputUrl"
+    }],
+    ref: "inputUrl",
+    staticClass: "form-control w-25 mt-4 mx-auto",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.inputUrl
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.inputUrl = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.outputUrl.length !== 0 ? _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.outputUrl,
+      expression: "outputUrl"
+    }],
+    ref: "outputUrl",
+    staticClass: "form-control w-25 mt-4 mx-auto",
+    attrs: {
+      type: "text",
+      disabled: ""
+    },
+    domProps: {
+      value: _vm.outputUrl
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.outputUrl = $event.target.value;
+      }
+    }
+  }) : _vm._e()])]);
+};
+var staticRenderFns = [];
 render._withStripped = true;
 
 

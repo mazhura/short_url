@@ -9,6 +9,20 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <style>
+        body {
+            background-color: #23774d;
+        }
+
+        .d-flex-center {
+            display: flex;
+            height: 100vh;
+            align-content: center;
+            justify-content: center;
+        }
+
+    </style>
 </head>
 <body>
 <div id="app">
