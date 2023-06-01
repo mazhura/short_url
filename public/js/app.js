@@ -5080,7 +5080,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       inputUrl: 'http://',
       outputUrl: '',
-      isInputEmpty: true
+      isInputEmpty: true,
+      errorMessage: ''
     };
   },
   methods: {
@@ -5096,7 +5097,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.outputUrl = response.data.outputUrl;
         _this.isInputEmpty = true;
       })["catch"](function (error) {
-        console.log(error);
+        _this.errorMessage = error.response.data.error;
+        setTimeout(function () {
+          _this.errorMessage = '';
+        }, 4000);
       });
     },
     focusInput: function focusInput() {
@@ -5145,7 +5149,9 @@ var render = function render() {
     on: {
       click: _vm.generateLink
     }
-  }, [_vm._v("\n            Generate link\n        ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n            Generate link\n        ")]), _vm._v(" "), _c("div", {
+    staticClass: "text-bg-danger w-25 mt-4 mx-auto text-center"
+  }, [_vm._v(_vm._s(_vm.errorMessage))]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",

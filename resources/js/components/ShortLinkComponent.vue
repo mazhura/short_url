@@ -10,6 +10,8 @@
                 Generate link
             </button>
 
+            <div class="text-bg-danger w-25 mt-4 mx-auto text-center">{{ errorMessage }}</div>
+
             <input
                 type="text"
                 class="form-control w-25 mt-4 mx-auto"
@@ -37,6 +39,7 @@ export default {
             inputUrl: 'http://',
             outputUrl: '',
             isInputEmpty: true,
+            errorMessage: '',
         }
     },
     methods: {
@@ -52,7 +55,11 @@ export default {
                     this.isInputEmpty = true;
                 })
                 .catch(error => {
-                    console.log(error);
+                    this.errorMessage = error.response.data.error;
+
+                    setTimeout(() => {
+                        this.errorMessage = ''
+                    }, 4000)
                 })
         },
         focusInput() {
