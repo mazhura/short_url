@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [SiteController::class, 'index']);
+Route::get('/{link}', [SiteController::class, 'redirectToUrl'])->name('redirectToUrl');
 Route::put('/', [SiteController::class, 'store']);

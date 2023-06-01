@@ -49,7 +49,7 @@ export default {
                 .then(response => {
                     console.log(response);
                     this.outputUrl = '12';
-                    this.isInputEmpty = true;
+                 //   this.isInputEmpty = true;
 
                 })
                 .catch(error => {
@@ -59,9 +59,6 @@ export default {
         focusInput() {
             this.$refs.inputUrl.focus();
         }
-    },
-    mounted() {
-        console.log('Component mounted.')
     },
     watch: {
         inputUrl: function (newVal) {

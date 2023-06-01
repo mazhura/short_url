@@ -5094,7 +5094,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response);
         _this.outputUrl = '12';
-        _this.isInputEmpty = true;
+        //   this.isInputEmpty = true;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5102,9 +5102,6 @@ __webpack_require__.r(__webpack_exports__);
     focusInput: function focusInput() {
       this.$refs.inputUrl.focus();
     }
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   },
   watch: {
     inputUrl: function inputUrl(newVal) {
