@@ -18,6 +18,9 @@ class GenerateLinkTest extends TestCase
 
         $response = $this->put('/', ['inputUrl' => 'php']);
         $response->assertStatus(400);
+
+        $response = $this->put('/', ['inputUrl' => 'http://gogwelg.coaosc']);
+        $response->assertStatus(400);
     }
 
     public function test_link_was_generated()
