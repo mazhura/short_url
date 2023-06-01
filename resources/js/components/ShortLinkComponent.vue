@@ -48,9 +48,8 @@ export default {
             axios.put('', {inputUrl: this.inputUrl})
                 .then(response => {
                     console.log(response);
-                    this.outputUrl = '12';
-                 //   this.isInputEmpty = true;
-
+                    this.outputUrl = response.data.outputUrl;
+                    this.isInputEmpty = true;
                 })
                 .catch(error => {
                     console.log(error);

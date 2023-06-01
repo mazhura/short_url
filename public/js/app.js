@@ -5093,8 +5093,8 @@ __webpack_require__.r(__webpack_exports__);
         inputUrl: this.inputUrl
       }).then(function (response) {
         console.log(response);
-        _this.outputUrl = '12';
-        //   this.isInputEmpty = true;
+        _this.outputUrl = response.data.outputUrl;
+        _this.isInputEmpty = true;
       })["catch"](function (error) {
         console.log(error);
       });

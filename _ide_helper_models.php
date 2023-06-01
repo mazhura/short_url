@@ -17,10 +17,12 @@ namespace App\Models{
  * @property int $id
  * @property string $input_url
  * @property string $hash
- * @property mixed|null $user_data
+ * @property array|null $user_data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LinkRedirect> $redirects
+ * @property-read int|null $redirects_count
  * @method static \Illuminate\Database\Eloquent\Builder|Link newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link onlyTrashed()
@@ -36,6 +38,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Link withoutTrashed()
  */
 	class Link extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\LinkRedirect
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkRedirect newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkRedirect newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkRedirect query()
+ */
+	class LinkRedirect extends \Eloquent {}
 }
 
 namespace App\Models{
