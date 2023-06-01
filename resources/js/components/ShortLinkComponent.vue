@@ -34,7 +34,7 @@
 export default {
     data() {
         return {
-            inputUrl: '',
+            inputUrl: 'http://',
             outputUrl: '',
             isInputEmpty: true,
         }
@@ -60,10 +60,20 @@ export default {
         }
     },
     watch: {
-        inputUrl: function (newVal) {
-            this.isInputEmpty = newVal.length === 0;
+        inputUrl: function (newVal, oldVal) {
+            if (newVal[newVal.length - 1] === ' ') {
+                this.inputUrl = oldVal;
+            }
+
+            let baseUrlLength = 'http://'.length;
+
+            this.isInputEmpty = newVal.length === baseUrlLength;
 
             this.outputUrl = '';
+
+            if (newVal.length < baseUrlLength) {
+                this.inputUrl = 'http://';
+            }
         }
     }
 }

@@ -5078,7 +5078,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      inputUrl: '',
+      inputUrl: 'http://',
       outputUrl: '',
       isInputEmpty: true
     };
@@ -5104,9 +5104,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    inputUrl: function inputUrl(newVal) {
-      this.isInputEmpty = newVal.length === 0;
+    inputUrl: function inputUrl(newVal, oldVal) {
+      if (newVal[newVal.length - 1] === ' ') {
+        this.inputUrl = oldVal;
+      }
+      var baseUrlLength = 'http://'.length;
+      this.isInputEmpty = newVal.length === baseUrlLength;
       this.outputUrl = '';
+      if (newVal.length < baseUrlLength) {
+        this.inputUrl = 'http://';
+      }
     }
   }
 });
